@@ -1,0 +1,86 @@
+Create Project:
+    => composer create_project laravel/laravel nameProject
+    => laravel new nameProject
+
+The first Steps:
+    1- create data base in PHPMyAdmin
+    2- .env 
+    3- port => 3306/3308
+    4- Schema::stringDefualtLength(191); and use it.
+    5- php artisan migrate
+
+Create Table:
+    => php artisan make:migration create_tableName_table
+
+Create Model:
+    => php artisan make:model Model 
+
+Create Controller:
+    => php artisan make:controller ModelController    
+    => php artisan make:controller ModelController -r
+
+Create Factory:
+    => php artisan make:Factory ModelFactory
+
+Create Seeder:
+    => php artisan make:seeder ModelSeeder
+
+Create All:
+    => php artisan make:model Model -mcrfs
+
+To Excute Seeder:
+    => php artisan db:seed --class=SeederName
+
+Type Controllers:
+    => empty Controller
+    => resourse Controller
+        => index => get/view
+        => create => get/view
+        => store => post
+        => show => get/view
+        => edit => get/view
+        => update => put
+        => destroy => delete
+
+Request in Laravel bty MVC:
+    user (view) => controller->(function)=> Route => model (SQL Query) => Controller (function) => user (view).
+
+    Route:
+    route::resourse('users' , UserController::class );
+
+Migration & Model
+
+Relations: ont to many
+    public function tests(){
+        return $this->hasMany(Test::class);
+    }
+    public function order(){
+        return $this->belongsTo(order::class);
+    }
+
+    One to One
+
+      public function test(){
+        return $this->hasOne(Test::class);
+    }
+    public function order(){
+        return $this->belongsTo(order::class);
+    }
+
+    Many to Many
+      public function tests(){
+        return $this->belongsToMany(Test::class , 
+            'test_order' 
+        
+        );
+    }
+    public function orders(){
+        return $this->belongsToMany(order::class);
+    }
+
+    Model OrderTest
+      public function test_order(){
+        return $this->hasMany(Test::class ,OrderClass , 'test_id' , 'order_id' , 'id' , 'id');
+    }
+
+    
